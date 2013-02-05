@@ -5,6 +5,10 @@ import (
 	"sync"
 )
 
+//This is a million times less good than
+// https://github.com/kylelemons/iq/blob/master/iq_slice.go
+// use that instead.
+
 type infinitychannel struct {
 	send    chan interface{}
 	recv    chan interface{}
