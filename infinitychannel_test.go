@@ -1,15 +1,16 @@
 package infinitychannel
 
 import "testing"
+import "fmt"
 
 func TestInfinitychannel(t *testing.T) {
 	send, recv := New()
 	for i := 0; i < 100; i++ {
-		send <- "omg"
+		send <- i
 	}
 
 	for i := 0; i < 100; i++ {
-		<-recv
-		println("omg")
+		x, _ := (<-recv).(int)
+		fmt.Println("omg ", x)
 	}
 }
