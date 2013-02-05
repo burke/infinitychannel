@@ -3,7 +3,7 @@ package infinitychannel
 import "testing"
 
 func TestInfinitychannel(t *testing.T) {
-  recv, send := New()
+  send, recv := New()
     for i := 0; i < 100; i++ {
       send <- "omg"
     }

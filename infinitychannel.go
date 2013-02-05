@@ -14,14 +14,13 @@ type infinitychannel struct {
   cond *sync.Cond
 }
 
-func New() (send, recv chan interface{}) {
-  var mutex sync.Mutex
-  var mutex2 sync.Mutex
+func New() (client_send, client_recv chan interface{}) {
+  var mutex, mutex2 sync.Mutex
   cond := sync.NewCond(&mutex)
   ic := &infinitychannel{make(chan interface{}), make(chan interface{}), false, list.New(), mutex2, cond}
   go ic.receiveItems()
   go ic.sendItems()
-  return ic.send, ic.recv
+  return ic.recv, ic.send
 }
 
 func (ic *infinitychannel) receiveItems() {
